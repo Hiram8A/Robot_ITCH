@@ -48,8 +48,8 @@ func (sl *Limits) Init() {
 	sl.Linear = Limit{-1.0, 1.0}
 	sl.FrontFlippers = Limit{-math.Pi/4,math.Pi/4}
 	sl.RearFlippers = Limit{-math.Pi/4,math.Pi/4}
-	sl.ArmJoint1 = Limit{-math.Pi/4,math.Pi/4}
-	sl.ArmJoint2 = Limit{-math.Pi/4,math.Pi/4}
+	sl.ArmJoint1 = Limit{-math.Pi/3,math.Pi/3}
+	sl.ArmJoint2 = Limit{-math.Pi,math.Pi}
 }
 
 type Sensor struct {

@@ -205,7 +205,7 @@
     <axis xyz="0  1  0"/>
     <dynamics damping=" 0.2" friction="0"/>
     <!-- <limit effort="10000" velocity="0.001" lower="-2.82" upper="0" /> -->
-    <limit effort="10000" velocity="0.05" lower="-2.9" upper="2.9" />
+    <limit effort="10000" velocity="0.05" lower="-15.6" upper="15.6" />
  </joint>
 
    <transmission name="arm_2">
