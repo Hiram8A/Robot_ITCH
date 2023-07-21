@@ -25,7 +25,7 @@ func main() {
 	}*/
 
 	port := flag.String("port", "11311", "ROS port")                     // true
-	iKeyb := flag.Bool("ik", false, "Keyboard input")                    // true
+	iKeyb := flag.Bool("ik", true, "Keyboard input")                    // true
 	iRos := flag.Bool("ir", true, "ROS input")                           // true
 	test := flag.Bool("t", false, "Test IP:HOST platform configuration") // false
 	oPlat := flag.Bool("op", false, "Platform command output")           // false

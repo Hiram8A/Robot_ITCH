@@ -15,7 +15,7 @@ type PlatformCmd struct {
 }
 
 const PI = 3.14
-const Latency = 25
+const Latency = 100
 const MAXVel = 400
 const AngFlipperRes = 5700.0 / (2 * PI) // 7600
 const AngArmRes = 5700.0 / (2 * PI)
@@ -66,6 +66,7 @@ func (p *PlatformCmd) serveFlipper(setState, change *state.State) {
 	var cmd string
 	fr := int(change.FrontFlippers * AngFlipperRes)
 	rr := int(change.RearFlippers * AngFlipperRes)
+	
 	if fr != 0 {
 		cmd = "MM2 !PR 1 " + strconv.Itoa(fr) + "\r\n"
 		connections.WriteToBase(cmd)
@@ -84,6 +85,7 @@ func (p *PlatformCmd) serveArm(setState, change *state.State) {
 	var cmd string
 	arm1 := int(change.ArmJoint1 * AngArmRes)
 	arm2 := int(change.ArmJoint2 * AngArmRes)
+	
 	if arm1 != 0 {
 		cmd = "!PR 1 " + strconv.Itoa(-arm1) + "\r"
 		connections.WriteToArm(cmd)
