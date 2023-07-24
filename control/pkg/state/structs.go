@@ -46,8 +46,8 @@ type Limits struct {
 func (sl *Limits) Init() {
 	sl.Angular = Limit{-1.0, 1.0}
 	sl.Linear = Limit{-1.0, 1.0}
-	sl.FrontFlippers = Limit{-math.Pi/4,math.Pi/4}
-	sl.RearFlippers = Limit{-math.Pi/4,math.Pi/4}
+	sl.FrontFlippers = Limit{-math.Pi,math.Pi}
+	sl.RearFlippers = Limit{-math.Pi,math.Pi}
 	sl.ArmJoint1 = Limit{-math.Pi/3,math.Pi/3}
 	sl.ArmJoint2 = Limit{-math.Pi,math.Pi}
 }
