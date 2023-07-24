@@ -1,7 +1,6 @@
 package input
 
 import (
-	"fmt"
 	"github.com/aler9/goroslib"
 	"github.com/aler9/goroslib/pkg/msgs/std_srvs"
 	"github.com/aler9/goroslib/pkg/msgs/sensor_msgs"
@@ -11,8 +10,8 @@ import (
 	"math"
 )
 
-var Flippers      bool
-var Arm           bool
+var block      bool = false
+var alt        bool = true
 	
 type Ros struct {
 	stateChange chan state.State
@@ -83,38 +82,67 @@ func (r *Ros) onRequest(msg *state.State) {
 func (r *Ros) JoyCallback(msg *sensor_msgs.Joy) {
 	r.state.FrontFlippers = 0
 	r.state.RearFlippers = 0
-
-	if msg.Buttons[1] == 1 {
-
-		Flippers = true
-	}
+	r.state.ArmJoint1 = 0
+	r.state.ArmJoint2 = 0
 	
 	if msg.Buttons[2] == 1 {
 
-		Flippers = false
+		block = !block
+	}
+
+	if msg.Buttons[1] == 1 {
+
+		alt = !alt
 	}
 	
-	if Flippers == true {
+	if block == true {
 	
-		if msg.Buttons[7] == 1 {
-			r.state.RearFlippers = 0
-			r.state.FrontFlippers = -0.1
-		}
+		if alt == true {
 		
-		if msg.Buttons[5] == 1 {
-			r.state.RearFlippers = 0
-			r.state.FrontFlippers = 0.1
-		}
-		
-		if msg.Buttons[6] == 1 {
-			r.state.FrontFlippers = 0
-			r.state.RearFlippers = -0.1
-		}
+			if msg.Buttons[7] == 1 {
+				r.state.RearFlippers = 0
+				r.state.FrontFlippers = -0.1
+			}
+			
+			if msg.Buttons[5] == 1 {
+				r.state.RearFlippers = 0
+				r.state.FrontFlippers = 0.1
+			}
+			
+			if msg.Buttons[6] == 1 {
+				r.state.FrontFlippers = 0
+				r.state.RearFlippers = -0.1
+			}
 
-		if msg.Buttons[4] == 1 {
-			r.state.FrontFlippers = 0
-			r.state.RearFlippers = 0.1
+			if msg.Buttons[4] == 1 {
+				r.state.FrontFlippers = 0
+				r.state.RearFlippers = 0.1
+			}
+			
+		} else {
+		
+			if msg.Buttons[7] == 1 {
+				r.state.ArmJoint1 = 0
+				r.state.ArmJoint2 = -0.1
+			}
+			
+			if msg.Buttons[5] == 1 {
+				r.state.ArmJoint1 = 0
+				r.state.ArmJoint2 = 0.1
+			}
+			
+			if msg.Buttons[6] == 1 {
+				r.state.ArmJoint2 = 0
+				r.state.ArmJoint1 = -0.1
+			}
+
+			if msg.Buttons[4] == 1 {
+				r.state.ArmJoint2 = 0
+				r.state.ArmJoint1 = 0.1
+			}
 		}
+	
+		
 	}
 	
 	if math.Abs(float64(msg.Axes[1])) != 0.0 {
@@ -132,15 +160,6 @@ func (r *Ros) JoyCallback(msg *sensor_msgs.Joy) {
 			r.state.Angular = float64(msg.Axes[2] / 2)*(-1)
 		}
 	}
-	
-	fmt.Print("traseros: ")
-	fmt.Print(r.state.RearFlippers)
-	fmt.Print("\n")
-	
-	fmt.Print("delanteros: ")
-	fmt.Print(r.state.FrontFlippers)
-	fmt.Print("\n")
-
 	
 	r.stateChange <- r.state
 }
