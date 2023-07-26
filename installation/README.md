@@ -39,7 +39,9 @@ Tenga paciencia, la instalación de Gazebo a partir del código fuente puede lle
 ```
 sudo apt -y update && sudo apt -y upgrade  
 sudo apt -y install git wget
+sudo apt install git
 ```
+
 ## 2.    Instalar ROS Noetic.
 ```
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list' && \
@@ -180,7 +182,7 @@ git clone https://github.com/Hiram8A/Robot_ITCH.git
 ## 7.    Instalación Gazebo.
 ```
 git clone https://github.com/osrf/gazebo /tmp/gazebo && \
-cp -r ~/catkin_ws/src/robot_ws/plugins/gazebo_plugins/* /tmp/gazebo/plugins && \
+cp -r ~/catkin_ws/src/Robot_ITCH/plugins/gazebo_plugins/* /tmp/gazebo/plugins && \
 cd /tmp/gazebo && \
 source /opt/ros/noetic/setup.bash && \
 mkdir build && \
@@ -191,7 +193,7 @@ sudo make install
 ```
 ## 8.   Copiar plugins del control de los Fipplers.
 ```
-cd  ~/catkin_ws/src/robot_ws/plugins/flipper_control
+cd  ~/catkin_ws/src/Robot_ITCH/plugins/flipper_control
 mkdir build
 cd build && \
 cmake .. && \
@@ -225,9 +227,9 @@ echo "export PATH=~/anaconda3/bin:$PATH" >> ~/.bashrc
 source ~/.bashrc
 conda init bash
 source ~/.bashrc
-conda env create -f ~/catkin_ws/src/robot_ws/installation/environment.yml
+conda env create -f ~/catkin_ws/src/Robot_ITCH/installation/environment.yml
 echo "conda activate sb_learning" >> ~/.bashrc && source ~/.bashrc
-cd ~/catkin_ws/src/robot_ws/gym-training && pip install -e .
+cd ~/catkin_ws/src/Robot_ITCH/gym-training && pip install -e .
 ```
 ## 12.   Instalación Go. 
 ```
