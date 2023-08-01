@@ -37,8 +37,14 @@ Tenga paciencia, la instalación de Gazebo a partir del código fuente puede lle
 
 ## 1.    Actualizar el sistema, instalar Git y Wget.
 ```
-sudo apt -y update && sudo apt -y upgrade  
+sudo apt -y update && sudo apt -y upgrade 
+```
+
+``` 
 sudo apt -y install git wget
+```
+
+```
 sudo apt install git
 ```
 
@@ -53,7 +59,9 @@ sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main
   source ~/.bashrc
 ```
 ## 3.    Preparar el sistema para la instalación del Gazebo.
-` sudo apt-get -y remove '.*gazebo.*' '.*sdformat.*' '.*ignition-math.*' '.*ignition-msgs.*' '.*ignition-transport.*'`
+```
+sudo apt-get -y remove '.*gazebo.*' '.*sdformat.*' '.*ignition-math.*' '.*ignition-msgs.*' '.*ignition-transport.*'
+```
 
 ## 4.    Instalar bibliotecas Gazebo.
 Ignition CMake  
@@ -203,13 +211,37 @@ sudo cp libjaguar_plugin.so /usr/lib/
 ## 9.   Modificación de las variables del entorno , la ruta por defecto es /usr/local
 ```
 echo "export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH" >> ~/.bashrc 
+```
+
+```
 echo "export PATH=/usr/local/bin:$PATH" >> ~/.bashrc
-echo "export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH" >> ~/.bashrc
+```
+
+```
+echo "export PKG_CONFIG_PATH=/usr/local/lib/
+```
+
+```
+pkgconfig:$PKG_CONFIG_PATH" >> ~/.bashrc
+```
+
+```
 source ~/.bashrc
 ```
 ## 10.   Instalación de paquetes ROS.
 ```
-sudo apt-get install -y ros-noetic-gazebo-ros-control ros-noetic-ros-controllers ros-noetic-ros-control ros-noetic-controller-manager ros-noetic-joint-state-controller 
+sudo apt-get install -y ros-noetic-gazebo-ros-control 
+```
+
+```
+ros-noetic-ros-controllers ros-noetic-ros-control 
+```
+
+```
+ros-noetic-controller-manager ros-noetic-joint-state-controller 
+```
+
+```
 cd ~/catkin_ws/src && \
     git clone https://github.com/ros-simulation/gazebo_ros_pkgs.git -b noetic-devel && \
     git clone https://github.com/ros/geometry2.git -b 0.7.5 && \
@@ -218,36 +250,104 @@ cd ~/catkin_ws/src && \
     cd ~/catkin_ws && \
     /bin/bash -c "catkin_make"
 ```
+
+## 11.    Intalacion de paqueterias previas python
+```
+sudo apt install curl
+```
+
 ## 11.   Instalación de Python
+Verificar instalacion de python
+```
+python3 --version
+```
+
+Instalar Python en caso de no tenerlo
+```
+sudp apt-get update
+sudo apt-get install python3.7
+```
+
 ```
 cd ~/ && curl https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_64.sh --output conda.sh &&\
     chmod +x ~/conda.sh &&\
     ~/conda.sh -b
+```
+
+```
 echo "export PATH=~/anaconda3/bin:$PATH" >> ~/.bashrc
+```
+
+```
 source ~/.bashrc
+```
+
+```
 conda init bash
+```
+
+```
 source ~/.bashrc
-conda env create -f ~/catkin_ws/src/Robot_ITCH/installation/environment.yml
+```
+
+```
+conda env create -f ~/catkin_ws/src/Robot_ITCH/installation/
+environment.yml
+```
+
+```
 echo "conda activate sb_learning" >> ~/.bashrc && source ~/.bashrc
+```
+
+```
 cd ~/catkin_ws/src/Robot_ITCH/gym-training && pip install -e .
 ```
 ## 12.   Instalación Go. 
 ```
 cd ~/Downloads
+```
+
+```
 wget https://golang.org/dl/go1.16.6.linux-amd64.tar.gz
+```
+
+```
 rm -rf /usr/local/go 
+```
+
+```
 sudo tar -C /usr/local -xzf go1.16.6.linux-amd64.tar.gz
+```
+
+```
 echo "export PATH=$PATH:/usr/local/go/bin" >> ~/.bashrc
+```
+
+```
 source ~/.bashrc
 ```
 ## 13.   Instalación de MongoDB.
 ```
 sudo apt-get install -y gnupg
-wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
-echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
-sudo apt-get update
-sudo apt-get install -y mongodb-org
+```
 
+```
+wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
+```
+
+```
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
+```
+
+```
+sudo apt-get update
+```
+
+```
+sudo apt-get install -y mongodb-org
+```
+
+```
 echo "running=\`pgrep mongod\`
 if  [[ !  -z  \$running  ]]
 then
@@ -262,6 +362,9 @@ fi
 ## 14.   Instalacion de paquetes de las cámaras.
 ```
 sudo apt update
+```
+
+```
 sudo apt install ros-noetic-gazebo-ros-pkgs
 ```
 
@@ -394,5 +497,18 @@ buttons: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ## 17.   Inicialización del proyecto.
 ```
 roscd control/..
+```
+
+```
 python build.py
 ```
+
+
+
+## Recusos
+
+http://docs.ros.org/en/noetic/api/geometry_msgs/html/msg/Pose.html
+
+https://answers.ros.org/question/54895/how-to-rostopic-echo-only-the-pose-in-the-odom-topic/
+
+http://wiki.ros.org/joy/Tutorials/ConfiguringALinuxJoystick
