@@ -1,4 +1,4 @@
-F# Instalación
+# Instalación
 
 Esta carpeta contiene la descripción para la instalación manual, la descripción de las dependencias de python y el script de instalación automática.
 
